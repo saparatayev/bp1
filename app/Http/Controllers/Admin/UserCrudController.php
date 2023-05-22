@@ -58,9 +58,13 @@ class UserCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::field('name');
-        CRUD::field('email');
-        CRUD::field('password');
+        CRUD::field('name')->validationRules('required|min:5');
+        CRUD::field('email')->validationRules('required|email|unique:users,email');
+        CRUD::field('password')->validationRules('required');
+
+        \App\Models\User::creating(function ($entry) {
+            $entry->password = \Hash::make($entry->password);
+        });
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
