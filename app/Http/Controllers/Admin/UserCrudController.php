@@ -81,6 +81,16 @@ class UserCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        $this->setupCreateOperation();
+        CRUD::field('name')->validationRules('required|min:5');
+        CRUD::field('email')->validationRules('required|email|unique:users,email,'.CRUD::getCurrentEntryId());
+        CRUD::field('password')->hint('Type a password to change it.');
+
+        \App\Models\User::updating(function ($entry) {
+            if (request('password') == null) {
+                $entry->password = $entry->getOriginal('password');
+            } else {
+                $entry->password = \Hash::make(request('password'));
+            }
+        });
     }
 }
