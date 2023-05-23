@@ -19,9 +19,9 @@ class Article extends Model
         'image'
     ];
 
-    // public function tags()
-    // {
-    //     return $this->belongsToMany('App\Models\Tag', 'article_tag');
-    // }
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\Tag', 'article_tag');
+    }
 }
 

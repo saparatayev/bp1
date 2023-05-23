@@ -28,6 +28,7 @@ class ArticleRequest extends FormRequest
             'title' => 'required|min:5|max:255',
             'description' => 'required|min:5|max:255',
             'image' => 'required|min:5|max:255',
+            'tags' => 'required'
         ];
     }
 

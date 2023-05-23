@@ -63,6 +63,14 @@ class ArticleCrudController extends CrudController
         CRUD::field('title');
         CRUD::field('description');
         CRUD::field('image');
+        CRUD::addField([
+            'label' => "Tags",
+            'type' => 'select_multiple',
+            'name' => 'tags', // the method that defines the relationship in your Model
+            'entity' => 'tags', // the method that defines the relationship in your Model
+            'attribute' => 'name', // foreign key attribute that is shown to user
+            'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
+        ]);
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
