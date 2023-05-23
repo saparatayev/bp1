@@ -42,6 +42,11 @@ class ArticleCrudController extends CrudController
         CRUD::column('title');
         CRUD::column('description');
         CRUD::column('image');
+        CRUD::addColumn([
+            'name' => 'created_at',
+            'type' => 'datetime',
+            // 'label' => 'Created date',
+        ]);
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
