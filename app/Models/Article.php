@@ -16,7 +16,16 @@ class Article extends Model
     protected $fillable = [
         'title',
         'description',
-        'image'
+        'image',
+        'metas'
+    ];
+    
+    protected $fakeColumns = [
+        'metas'
+    ];
+    
+    protected $casts = [
+        'metas' => 'array',
     ];
 
     public function tags()

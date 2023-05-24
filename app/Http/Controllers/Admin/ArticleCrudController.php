@@ -76,6 +76,25 @@ class ArticleCrudController extends CrudController
             'attribute' => 'name', // foreign key attribute that is shown to user
             'pivot' => true, // on create&update, do you need to add/delete pivot table entries?
         ]);
+        CRUD::addField([
+            'name'     => 'meta_title',
+            'label'    => "Meta Title", 
+            'fake'     => true, 
+            'store_in' => 'metas' // [optional]
+        ]);
+        CRUD::addField([
+            'name'     => 'meta_description',
+            'label'    => "Meta Description", 
+            'fake'     => true, 
+            'store_in' => 'metas' // [optional]
+        ]);
+        CRUD::addField([
+            'name'     => 'meta_keywords',
+            'label'    => "Meta Keywords", 
+            'fake'     => true, 
+            'store_in' => 'metas' // [optional]
+        ]);
+
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
@@ -97,7 +116,9 @@ class ArticleCrudController extends CrudController
 
     protected function setupShowOperation()
     {
-        $this->autoSetupShowOperation();
+        // $this->autoSetupShowOperation();
+
+        $this->setupListOperation();
 
         CRUD::addColumn([
             // n-n relationship (with pivot table)
@@ -107,6 +128,12 @@ class ArticleCrudController extends CrudController
             'entity'    => 'tags', // the method that defines the relationship in your Model
             'attribute' => 'name', // foreign key attribute that is shown to user
             'model'     => 'App\Models\Tag', // foreign key model
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'metas',
+            'label' => 'Metas',
+            'type' => 'json'
         ]);
     }
 }
