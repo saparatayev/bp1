@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\LocalizationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/set-lang/{lang}', [LocalizationController::class, 'setLang'])->name('bp.set_lang');
